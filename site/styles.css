@@ -19,3 +19,6 @@ input::placeholder,textarea::placeholder{color:var(--readable-muted);opacity:1}b
 @media(max-width:760px){main{padding:0 14px}.sidebar{padding:14px;flex-wrap:wrap}.sidebar nav{flex-basis:100%;flex-wrap:wrap}.tools{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:30px}.hero h1 em{margin-left:0}.media-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}.overview{gap:20px;padding:14px}.results-row select{max-width:160px}}
 
 #details[open]{display:block;grid-template-columns:none}#details .detail-content{min-width:0;width:100%}#player{width:100%}
+
+/* Resource images use the same roomy, uncropped card preview as worksheets. */
+.media-cover{aspect-ratio:16/9;height:auto;min-height:0;background:#e9eef5;padding:0;border-radius:8px;overflow:hidden}.media-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;z-index:1}.media-cover:has(img)>span,.media-cover:has(img)>strong,.media-cover:has(img)>i{visibility:hidden}.media-cover>strong{padding:14px;font-size:18px}.media-cover>span{padding:10px}.media-cover>i{right:12px;bottom:8px}

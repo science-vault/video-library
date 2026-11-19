@@ -27,6 +27,19 @@ jobs:
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
       - name: Index uploaded resources
         run: python3 scripts/build_catalog.py
+      - name: Install thumbnail renderers
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg libreoffice-impress fonts-liberation
+          python3 -m pip install PyMuPDF==1.26.6
+      - name: Restore thumbnail cache
+        uses: actions/cache@v4
+        with:
+          path: .thumbnail-cache
+          key: thumbnails-v1-${{ github.sha }}
+          restore-keys: thumbnails-v1-
+      - name: Generate resource thumbnails
+        run: python3 scripts/build_thumbnails.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -34,5 +47,3 @@ jobs:
       - name: Publish
         id: deployment
         uses: actions/deploy-pages@v4
-
-# Resource catalogue refresh requested: 2026-11-19
