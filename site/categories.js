@@ -132,6 +132,7 @@ const areaMap={science:'Science',mathematics:'Mathematics',hass:'Humanities and 
 function enrich(b){
  const parts=String(b.sourcePath||'').split('/');let years=b.years||[],subject=b.subject;
  for(let i=0;i<parts.length-1;i++){const m=parts[i].match(/^(?:Year[ _-]*)?(0?[1-9]|1[0-2])$/i);if(m){if(!years.length)years=[Number(m[1])];if(!subject||subject==='Uncategorised')subject=parts[i-1];}}
+ if(years.some(y=>y>=11)&&subject==='Science'){const course=parts.find(v=>/^(Human Biology(?: General)?|Biology|Chemistry|Physics|Psychology|Earth and Environmental Science|Science in Practice)$/i.test(v));if(course)subject=course;}
  subject=({HASS:'HASS',Maths:'Mathematics'})[subject]||subject||'Other';
  const input={...b,subject,years,topic:b.topic||parts.slice(2,-1).join(" / ")};const cat=root.PowerPointCategories.classify(input),family=root.PowerPointCategories.family(input);
  const area=areaMap[family]||subject;let strand=cat.strand,topic=cat.topic;subject=cat.subject;
