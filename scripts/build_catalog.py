@@ -29,7 +29,7 @@ def validate(b):
 def infer(path):
  parts=path.parts; year=[]; subject='Uncategorised';topic=''
  for i,p in enumerate(parts[:-1]):
-  m=re.fullmatch(r'Year[ _-]*(\d{1,2})',p,re.I)
+  m=re.fullmatch(r'(?:Year[ _-]*)?(\d{1,2})',p,re.I)
   if m:
    n=int(m[1]);year=[n] if n in range(1,13) else []
    if i>0 and parts[i-1] not in ['Primary','Secondary','resources']:subject=parts[i-1]
